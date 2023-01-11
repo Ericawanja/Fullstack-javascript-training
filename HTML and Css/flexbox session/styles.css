@@ -18,7 +18,7 @@ body {
   border-radius: 5px;
 }
 .sectionDetails {
-  padding: 10px;
+  padding: 40px 20px;
 }
 .sectionDetails h1 {
   color: white;
@@ -34,14 +34,15 @@ body {
     display: flex;
     gap: 5px;
     justify-content: space-between;
-    margin: 5px;
-
+    align-items: flex-end;
+    margin: 15px; 
 
 }
 .sectionStats div{
     display: flex;
     flex-direction: column;
     gap: 4px;
+  
 }
 .statValue{
     font-size: 1.3rem;
