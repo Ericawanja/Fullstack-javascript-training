@@ -1,10 +1,8 @@
 Create a folder with the following files  
 
--index.html 
-
+Index.html 
 Index.css 
-
-- index.js 
+Index.js 
 
 -  Initialize git on the directory 
 
