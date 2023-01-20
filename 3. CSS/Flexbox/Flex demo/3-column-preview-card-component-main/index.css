@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+ box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+}
+.card1, .card2, .card3{
+    padding: 15px;    
+}
+.card1 {
+  background-color: hsl(31, 77%, 52%);
+  align-self: stretch;
+}
+.card2 {
+  background-color: hsl(184, 100%, 22%);
+  align-self: stretch;
+}
+.card3 {
+  background-color: hsl(179, 100%, 13%);
+  align-self: stretch;
+}
+.cardIcon{
+    padding: 20px 0;
+}
+.title{
+    color: white;
+    font-family: 'Big Shoulders Display', cursive;
+    font-size: 1.3rem;
+
+}
+.cardBody{
+    color: white;
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: .9rem;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+
+}
+.btn{  
+   border-radius: 15px; 
+   padding: 20px 0;
+
+}
+.btn a{
+    text-decoration: none;
+    cursor: pointer;
+     background-color: white;
+     padding: 5px 20px ;
+     border-radius: 5px;
+}
+.card1 .btn a{
+    color: hsl(31, 77%, 52%);
+
+}
+.card2 .btn a{
+    color: hsl(184, 100%, 22%);
+}
+.card3 .btn a{
+    color:hsl(179, 100%, 13%) ;
+}
+ 
