@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Greet from "./Greet";
+import MouseCounter from "./MouseHoverCounter";
 
 export class Counter extends Component {
   constructor(props) {
@@ -20,11 +22,14 @@ export class Counter extends Component {
   render() {
     return (
       <div className="counter">
+        <Greet  greetings= {`Good morning`}/>
         <span className="value">{this.state.count}</span>
         <span className="btns">
           <button onClick={this.handleIncrement}> + </button>
           <button onClick={this.handleDecrement}> - </button>
         </span>
+
+        <MouseCounter counter ={this.state.count} />
       </div>
     );
   }
