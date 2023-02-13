@@ -1,28 +1,31 @@
 import React, { Component } from "react";
 
-export class Stopwatch extends Component {
+export default class Stopwatch extends Component {
   constructor(props) {
     super(props);
     this.state = { date: new Date() };
   }
-
   componentDidMount() {
-    console.log("mounting");
-    this.time = setInterval(() => {
+    console.log("The component has been mounted");
+    // console.log(new Date());
+    this.timerId = setInterval(() => {
       this.setState({ date: new Date() });
     }, 1000);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // console.log(prevState, this.state)
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // console.log(prevState, this.state.date);
   }
   componentWillUnmount() {
-    console.log("unmounting");
-    clearInterval(this.time);
+    console.log("The timer is unmounting");
+    clearInterval(this.timerId);
   }
   render() {
-    return <div>{this.state.date.toLocaleTimeString()}</div>;
+    return (
+      <div className="stopwatch">
+        <span className="title">stopwatch</span>
+        <span>{this.state.date.toLocaleTimeString()}</span>
+      </div>
+    );
   }
 }
-
-export default Stopwatch;

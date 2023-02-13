@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 
 function Clock() {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState({ date: new Date() });
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const timerId = setInterval(() => {
-      setTime(new Date());
+    let timerID = setInterval(() => {
+      setTime({ date: new Date() });
     }, 1000);
 
-    return () => {
-        console.log('unmounting')
-      clearInterval(timerId);
-    };
+    return ()=>{
+        clearInterval(timerID)
+    }
   }, []);
-  return <div>{time.toLocaleTimeString()}</div>;
+
+  return (
+    <div className="clock">
+      <span className="title">stopwatch</span>
+      <span>{time.date.toLocaleTimeString()}</span>
+      <button onClick={() => setCount((prev) => prev + 1)}>{count}</button>
+    </div>
+  );
 }
 
 export default Clock;
