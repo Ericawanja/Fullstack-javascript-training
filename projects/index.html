@@ -9,79 +9,38 @@
   </head>
   <body>
     <div class="container">
-      <div class="header"></div>
-      <div class="wrapper">
-        <div class="todo" id="1">
-          <div class="check"><input type="checkbox" name="" id="" /></div>
+      <div class="header">
+        <div class="welcome">Welcome back</div>
+        <div class="createBtn">Add</div>
+      </div>
+      <div class="wrapper"></div>
+      <div class="createForm">
+        <div class="taskForm">
+          <h1 id="form-title">Create Task</h1>
+          <form>
+            <label for="title">Task title</label>
+            <input
+              type="text"
+              placeholder="Enter the task title"
+              name="title"
+              id="formTitle"
+              required
+            />
 
-          <div class="details">
-            <div class="title">Title</div>
-            <div class="desc">Description</div>
-          </div>
-          <div class="icons">
-            <span class="delete" id="1">Delete</span>
-            <span class="edit" id="1">Edit</span>
-          </div>
-        </div>
-        <div class="todo" id="2">
-          <div class="check"><input type="checkbox" name="" id="" /></div>
+            <label for="task_desc">Task details</label>
+            <input
+              type="text"
+              placeholder="Enter task details"
+              name="taskDesc"
+              id="taskDesc"
+            />
 
-          <div class="details">
-            <div class="title">Title</div>
-            <div class="desc">Description</div>
-          </div>
-          <div class="icons">
-            <span class="delete" id="2">Delete</span>
-            <span class="edit" id="2">Edit</span>
-          </div>
-        </div>
-        <div class="todo" id="3">
-          <div class="check"><input type="checkbox" name="" id="" /></div>
-
-          <div class="details">
-            <div class="title">Title</div>
-            <div class="desc">Description</div>
-          </div>
-          <div class="icons">
-            <span class="delete" id="3">Delete</span>
-            <span class="edit" id="3">Edit</span>
-          </div>
-        </div>
-        <div class="todo" id="4">
-          <div class="check"><input type="checkbox" name="" id="" /></div>
-
-          <div class="details">
-            <div class="title">Title</div>
-            <div class="desc">Description</div>
-          </div>
-          <div class="icons">
-            <span class="delete"id="4">Delete</span>
-            <span class="edit" id="4">Edit</span>
-          </div>
-        </div>
-        <div class="todo" id="5">
-          <div class="check"><input type="checkbox" name="" id="" /></div>
-
-          <div class="details">
-            <div class="title">Title</div>
-            <div class="desc">Description</div>
-          </div>
-          <div class="icons" >
-            <span class="delete" id="5"> Delete</span>
-            <span class="edit" id="5">Edit</span>
-          </div>
-        </div>
-        <div class="todo" id="6">
-          <div class="check"><input type="checkbox" name="" id="" /></div>
-
-          <div class="details">
-            <div class="title">Title</div>
-            <div class="desc">Description</div>
-          </div>
-          <div class="icons">
-            <span class="delete" id="6">Delete</span>
-            <span class="edit" id="6">Edit</span>
-          </div>
+            <h4 class="enterDetails">Enter all the details</h4>
+            <div class="formBtns">
+              <button type="button" class="cancel">Cancel</button>
+              <button type="button" class="submit">Save</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
