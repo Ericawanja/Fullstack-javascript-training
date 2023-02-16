@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    width: 500px;
+    min-height: 500px;
+    color: white;
+    background-color: rgb(0, 0, 12);
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+#firstDiv{
+    background-color: yellowgreen;
+    
+}
+.secondDiv{
+    background-color: yellow;
+    flex-basis: 200px;
+}
+.thirdDiv{
+    background-color: rgb(7, 207, 81);
+}
+
+/* .container div{
+    width: 100px;
+    height: 100px;
+} */
