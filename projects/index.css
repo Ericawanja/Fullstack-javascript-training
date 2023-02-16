@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 40%;
+  background-color: rgb(173, 123, 233);
+}
+.wrapper {
+  padding: 20px;
+}
+.todo {
+  display: grid;
+  grid-template-columns: 10% 70% 20%;
+  background-color: rgba(16, 13, 19, 0.2);
+  margin-bottom: 15px;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  align-items: center;
+}
+.check input{
+    width: 25px;
+    height: 25px;
+}
+.details{
+    
+    color: rgb(10, 1, 20);
+}
+.title{
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding-bottom: 14px;
+    text-transform: capitalize;
+}
+.delete, .edit{
+    cursor: pointer;
+}
