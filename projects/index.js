@@ -3,18 +3,22 @@ let data = [
     id: 1,
     title: "clean today",
     description: "do the cleaning today",
+    status:'pending'
   },
   {
     id: 2,
     title: "cook",
     description: "Cook the meal today",
+    status:'pending'
   },
   {
     id: 3,
     title: "cook",
     description: "Cook the meal today",
+    status:'pending'
   },
 ];
+let state = {}
 
 //render todos read
 function renderTodos(todos) {
@@ -22,8 +26,8 @@ function renderTodos(todos) {
   container.innerHTML = todos
     .map((todo) => {
       return `
-    <div class="todo" id=${todo.id}>
-          <div class="check"><input type="checkbox" name="" id="" /></div>
+    <div class= 'todo'  id=${todo.id} >
+          <div class="check"><input type="checkbox" name="" id="checkBtn"  /></div>
 
           <div class="details">
             <div class="title">${todo.title}</div>
@@ -40,10 +44,14 @@ function renderTodos(todos) {
 
   const deleteBtn = document.getElementsByClassName("delete");
   const editBtn = document.getElementsByClassName("edit");
+  const checkbox = document.querySelectorAll("#checkBtn")
+  
 
   for (let i = 0; i < deleteBtn.length; i++) {
     deleteBtn[i].addEventListener("click", deleteMethod);
     editBtn[i].addEventListener("click", editMethod);
+    checkbox[i].addEventListener("click", handleCompleted)
+    
   }
 }
 
@@ -86,8 +94,8 @@ const saveBtn = document.querySelector(".submit");
 saveBtn.addEventListener("click", createMethod);
 
 function createMethod() {
-  const element = data.find((t) => t.id === +elementToEdit);
-  if (element) return saveEditedTodo;
+  // const element = data.find((t) => t.id === +elementToEdit);
+  if (state.status === 'editing') return saveEditedTodo(state.elementToEdit);
   const id = Math.floor(Math.random() * 100);
   //form values
   const title = document.querySelector("#formTitle").value;
@@ -120,6 +128,8 @@ function saveEditedTodo(id) {
       return t;
     }
   });
+  state = {}
+  closeFormMethod()
   renderTodos(newData);
 }
 //edit
@@ -131,7 +141,26 @@ function editMethod(event) {
   openForm();
   document.querySelector("#formTitle").value = element.title;
   document.querySelector("#taskDesc").value = element.description;
-  saveEditedTodo(element.id);
+  state.status = 'editing'
+  state.elementToEdit = element.id
+  // saveEditedTodo(element.id);
 }
+
+
+//handle completed 
+function handleCompleted(event){
+  let elementId = event.target.parentElement.parentElement.id
+  let newData = data.map(t=>{
+    if(t.id === +elementId){
+      return {
+        ...t, status:done
+      }
+      return t
+    }
+    renderTodos(newData)
+  })
+
+}
+
 
 renderTodos(data);

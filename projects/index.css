@@ -94,3 +94,20 @@ form input {
     color: rgb(238, 238, 238);
     cursor: pointer;
 }
+.header{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px 0 4px;
+  color: white;
+  font-weight: 700;
+}
+.createBtn{
+  cursor: pointer;
+  background-color: rgba(102, 51, 153, .2);
+  padding: 10px;
+  border-radius: 5px;
+
+}
+.done{
+  background-color: aqua;
+}
