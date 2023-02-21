@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 300px 300px;
+  grid-template-areas:
+    "item1 item1 item2 item3"
+    "item4 item5 item5 item3";
+  gap: 10px;
+  width: 80%;
+}
+.item1,
+.item2,
+.item3,
+.item4,
+.item5 {
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.item1 {
+  grid-area: item1;
+  background-color: hsl(263, 55%, 52%);
+}
+.item2 {
+  grid-area: item2;
+  background-color: hsl(217, 19%, 35%);
+}
+.item3 {
+  grid-area: item3;
+  background-color: hsl(0, 0%, 100%);
+}
+.item4 {
+  grid-area: item4;
+
+  background-color: hsl(0, 0%, 100%);
+}
+.item5 {
+  grid-area: item5;
+  background-color: hsl(219, 29%, 14%);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profileImg img {
+  border-radius: 50%;
+  border: 1px solid white;
+}
+.item1 .name,
+.item2 .name,
+.item5 .name {
+  color: white;
+  text-transform: capitalize;
+}
+.personDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.personDetails .title {
+  color: rgba(103, 102, 102, 0.5);
+}
+.item1 .responseTitle,
+.item2 .responseTitle,
+.item5 .responseTitle {
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+}

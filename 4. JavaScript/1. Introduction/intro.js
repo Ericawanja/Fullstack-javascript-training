@@ -43,3 +43,5 @@ let  array1 = [36, 368, 2992]
 let array2 = array1
 array1.pop()
 console.log(array1, array2);
+
+let num = 
