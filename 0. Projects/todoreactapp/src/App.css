@@ -8,6 +8,7 @@
   margin: auto;
   min-height: 90vh;
   padding: 10px;
+  position: relative;
 }
 .header{
   display: flex;
@@ -48,4 +49,69 @@
 .delete,
 .edit {
   cursor: pointer;
+  padding-right: 10px;
+}
+.createForm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+}
+.taskForm {
+  background-color: rgb(238, 238, 238);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.taskForm h1 {
+  font-size: 1.1rem;
+  color: rgb(10, 1, 20);
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+form label {
+  color: rgb(10, 1, 20);
+  padding: 5px 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+form input {
+  padding: 4px;
+  font-size: 1.1rem;
+}
+
+.formBtns{
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+.formBtns button{
+    outline: none;
+    border: none;
+    padding: 6px;
+    background-color: rgb(173, 123, 233);
+    color: rgb(238, 238, 238);
+    cursor: pointer;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px 0 4px;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.createBtn{
+  cursor: pointer;
+  background-color: rgba(102, 51, 153, .2);
+  padding: 10px;
+  border-radius: 5px;
+
+}
+.done{
+  background-color: aqua;
 }
