@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../App.css";
 
 function Todo() {
@@ -30,6 +30,7 @@ function Todo() {
     title: "",
     desc: "",
   });
+  let myref = useRef()
 
   const handleFormDisplay = () => {
     setShowForm(!showForm);
@@ -67,6 +68,10 @@ function Todo() {
       }
     })
     setData(newData)
+  }
+  const handleFocus = ()=>{
+    console.log(myref)
+    myref.current.focus()
   }
 
   return (
@@ -114,8 +119,9 @@ function Todo() {
             <div className="taskForm">
               <h1 id="form-title">Create Task</h1>
               <form>
-                <label htmlFor="title">Task title</label>
+                <label htmlFor="title" onClick={handleFocus}>Task title</label>
                 <input
+                ref={myref}
                   type="text"
                   placeholder="Enter the task title"
                   name="title"
