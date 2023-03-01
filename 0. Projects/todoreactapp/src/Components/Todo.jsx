@@ -28,52 +28,57 @@ function Todo() {
   const [showForm, setShowForm] = useState(false);
   const [inputs, setInputs] = useState({
     title: "",
-    desc: "",
+    description: "",
   });
-  let myref = useRef()
 
   const handleFormDisplay = () => {
     setShowForm(!showForm);
   };
+
   const handleInputsChange = (event) => {
     const { name, value } = event.target;
-
     setInputs({ ...inputs, [name]: value });
   };
+
   const handleSubmit = () => {
     let id = Math.ceil(Math.random() * 100000000);
     setData((prev) => [{ ...inputs, id, completed: false }, ...prev]);
     setShowForm(!showForm);
     setInputs({
       title: "",
-      desc: "",
+      description: "",
     });
   };
   const handleCancel = () => {
     setInputs({
       title: "",
-      desc: "",
+      description: "",
     });
   };
 
-  const handleChecked = (id)=>{
-    const newData = data.map(d=>{
-      if(d.id === id) {
+  const handleChecked = (id) => {
+    const newData = data.map((d) => {
+      if (d.id === id) {
         return {
           ...d,
-          completed: !d.completed
-        }
-      }else{
-        return d
+          completed: !d.completed,
+        };
+      } else {
+        return d;
       }
-    })
-    setData(newData)
-  }
-  const handleFocus = ()=>{
-    console.log(myref)
-    myref.current.focus()
-  }
+    });
+    setData(newData);
+  };
 
+  //useref
+  const titleRef = useRef(0);
+  const descRef = useRef();
+  const handleTitleFocus = () => {
+    titleRef.current.focus();
+  };
+  const handleDescRef = ()=>{
+    descRef.current.focus()
+  }
   return (
     <>
       <div className="todoContainer">
@@ -119,9 +124,11 @@ function Todo() {
             <div className="taskForm">
               <h1 id="form-title">Create Task</h1>
               <form>
-                <label htmlFor="title" onClick={handleFocus}>Task title</label>
+                <label htmlFor="title" onClick={handleTitleFocus}>
+                  Task title
+                </label>
                 <input
-                ref={myref}
+                  ref={titleRef}
                   type="text"
                   placeholder="Enter the task title"
                   name="title"
@@ -131,11 +138,14 @@ function Todo() {
                   required
                 />
 
-                <label htmlFor="task_desc">Task details</label>
+                <label htmlFor="task_desc" onClick={handleDescRef}>
+                  Task details
+                </label>
                 <input
+                  ref={descRef}
                   type="text"
                   placeholder="Enter task details"
-                  name="desc"
+                  name="description"
                   id="taskDesc"
                   value={inputs.desc}
                   onChange={handleInputsChange}
