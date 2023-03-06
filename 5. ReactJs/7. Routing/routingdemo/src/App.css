@@ -18,16 +18,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 90px 0 50px;
 }
 a {
   text-decoration: none;
   color: rgb(1, 8, 15);
   cursor: pointer;
 }
+
 .right {
   display: flex;
   gap: 10px;
+  font-weight: 500;
+  
+}
+.right a{
+  color: aliceblue;
 }
 .productsLayout {
   display: grid;
@@ -76,6 +82,13 @@ a {
   border-radius: 2px;
 }
 .pDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.price{
+  font-weight: 500;
+  padding: 5px;
 }
 .seeMore {
   display: flex;

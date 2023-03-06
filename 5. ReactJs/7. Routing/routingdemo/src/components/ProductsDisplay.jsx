@@ -34,12 +34,13 @@ function ProductsDisplay({ products, category }) {
                 <img src={product?.images[0]} alt="product " />
               </div>
               <div className="pDetails">
-                <span className="price">{product.price || "no price"}</span>
+                
                 <span>{product.title}</span>
+                <span className="price">Price: ${product.price}</span>
 
-                <span className="seeMore">
+                {/* <span className="seeMore">
                   <Link to={`/products/${product.id}`}>See more</Link>
-                </span>
+                </span> */}
               </div>
               <div className="addtoCart">Add to Cart</div>
             </div>
