@@ -17,7 +17,7 @@ function Products({ products }) {
   }, [products]);
   return (
     <div>
-      <Navbar />
+     
       <div className="productsLayout">
         <div>
           <div className="categories">

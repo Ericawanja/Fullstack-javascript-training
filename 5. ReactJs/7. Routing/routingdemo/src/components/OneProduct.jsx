@@ -16,11 +16,14 @@ function OneProduct({ products }) {
         
      </div>
      <div className="oneProductDetails">
-        <span>{product?.title}</span>
-        <span>{product?.description}</span>
-        <span>
-            <span>${product?.price}</span>
-            <span>{product?.discount}</span>
+        <span className="pTitle">{product?.title}</span>
+        <span className="pDesc">{product?.description}</span>
+        <span className="priceDetails">
+            <span className="pPrice">Price: ${product?.price}</span>
+            <span className="pDiscount">Discount: {product?.discountPercentage}%</span>
+        </span>
+        <span className="addItemToCart">
+          Add to cart
         </span>
      </div>
     </div>
