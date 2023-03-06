@@ -38,12 +38,27 @@ a{
 .productsLayout{
   display: grid;
   grid-template-columns: 20% 80%;
-  padding: 20px;
+  padding: 20px 20px 20px 10px;
 }
 .categories{
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+}
+.category{
+  text-transform: capitalize;
+  color: rgb(1, 1, 15);
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 5px;
+ 
+}
+.category:hover{
+  background-color: rgb(1, 1, 15);
+  color: white;
 }
 .productsContainer{
   display: grid;

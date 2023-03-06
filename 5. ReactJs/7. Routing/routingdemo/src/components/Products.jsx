@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {  Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 function Products({ products }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const handleCategoryNavigation = (category) => {
-    
-     navigate(`/products/${category}`)
-    
+    navigate(`/products/${category}`);
   };
 
   useEffect(() => {
@@ -21,18 +19,20 @@ function Products({ products }) {
     <div>
       <Navbar />
       <div className="productsLayout">
-        <div className="categories">
-          {categories.map((category, index) => {
-            return (
-              <span
-                className="category"
-                key={index}
-                onClick={() => handleCategoryNavigation(category)}
-              >
-                {category}
-              </span>
-            );
-          })}
+        <div>
+          <div className="categories">
+            {categories.map((category, index) => {
+              return (
+                <span
+                  className="category"
+                  key={index}
+                  onClick={() => handleCategoryNavigation(category)}
+                >
+                  {category}
+                </span>
+              );
+            })}
+          </div>
         </div>
         <Outlet />
       </div>
