@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
+import {  Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
 function Products({ products }) {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const handleCategoryNavigation = (category) => {
-    console.log(category)
-    navigate(`/products/${category}`)
+    
+     navigate(`/products/${category}`)
+    
   };
 
   useEffect(() => {

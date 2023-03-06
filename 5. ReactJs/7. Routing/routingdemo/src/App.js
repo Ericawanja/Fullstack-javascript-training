@@ -9,8 +9,7 @@ import { products } from "./data";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
+      <Routes>       
         <Route path={"/products"} element={<Products products={products} />}>
           <Route
             index

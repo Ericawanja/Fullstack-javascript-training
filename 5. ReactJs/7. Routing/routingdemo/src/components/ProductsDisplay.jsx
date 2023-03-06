@@ -8,21 +8,23 @@ function ProductsDisplay({ products, category }) {
   const handleNavigation = (id) => {
     navigate(`/products/${id}`);
   };
+
   useEffect(()=>{
     if(category==='all'){
         setData(products)
     }else{
+      console.log(category)
         const itemsInCategory = products.filter(p=>p.category === category)
         setData(itemsInCategory)
     }
 
-  }, [products])
+  }, [products, category])
  
   return (
     <div className="productsContainer">
       {data && data.length > 0 ? (
         data.map((product) => {
-            console.log(product)
+           
           return (
             <div className="product" key={product.id}>
               <div
