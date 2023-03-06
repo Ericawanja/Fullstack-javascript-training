@@ -1,0 +1,88 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  
+ 
+ 
+}
+.App{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.Navbar{
+  background-color: rgb(223,138,47);
+  color: white;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+a{
+  text-decoration: none;
+  color: rgb(1, 8, 15);
+  cursor: pointer;
+}
+.right{
+  display: flex;
+  gap: 10px;
+}
+.productsLayout{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  padding: 20px;
+}
+.category{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.productsContainer{
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  gap: 10px;
+  padding: 20px;
+  width: 100%;
+  margin: auto;
+}
+.product{
+  background-color: rgb(247, 249, 250);
+  
+}
+.pImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.pImg img{
+  width: 90%;
+  height: 250px;
+  border-radius: 2px;
+}
+.pDetails{
+  
+}
+.seeMore{
+  display: flex;
+  justify-content: flex-end;
+  color: rgb(137, 138, 139);
+  font-size: .8rem;
+}
+.addtoCart{
+  background-color: rgb(223,138,47);
+  color: white;
+  padding: 7px;
+}
+.categories{
+  
+
+}
