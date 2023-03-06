@@ -11,21 +11,27 @@ function App() {
     <div className="App">
       <Routes>
         {/* <Route path="/" element={<Home />} /> */}
-        <Route to={"/products"}>
+        <Route path={"/products"} element={<Products products={products} />}>
           <Route
             index
             element={<ProductsDisplay products={products} category={"all"} />}
           />
           <Route
-            to={"/smartPhones"}
+            path={"smartPhones"}
             element={
               <ProductsDisplay products={products} category={"smartphones"} />
             }
           />
           <Route
-            to={"/laptops"}
+            path={"laptops"}
             element={
               <ProductsDisplay products={products} category={"laptops"} />
+            }
+          />
+          <Route
+            path={"groceries"}
+            element={
+              <ProductsDisplay products={products} category={"groceries"} />
             }
           />
         </Route>

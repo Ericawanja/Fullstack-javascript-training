@@ -40,7 +40,7 @@ a{
   grid-template-columns: 20% 80%;
   padding: 20px;
 }
-.category{
+.categories{
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -83,6 +83,7 @@ a{
   padding: 7px;
 }
 .categories{
-  
+  display: flex;
+
 
 }
