@@ -1,4 +1,6 @@
 # Context Api
+CreateContext makes it possible to create global or semi global data that can be accessed  by nested components. This helps solve the issued of prop drilling. 
+
 A simple demo illustrating how to create a theme switcher using context api.
 ## To check the demo
 - Fork the repo
