@@ -15,5 +15,5 @@ Concepts Covered
 - navigate to the directory
 - run `npm install`
 - run `npm start`
-## Resources to learn context api
+## Resources to react router
 [React Router v6 web dev simplified](https://blog.webdevsimplified.com/2022-07/react-router/)
