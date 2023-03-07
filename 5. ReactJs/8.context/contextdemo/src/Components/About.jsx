@@ -1,26 +1,20 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../App";
 
-export class About extends Component {
-  render() {
-    return (
-      <ThemeContext.Consumer>
-        {({theme, setTheme}) => {
-            console.log(setTheme)
-          return <div className={theme}>
-            <h1>Home in class components</h1>
-            <button
-              onClick={() =>
-                setTheme((prev) => (prev === "dark" ? "light" : "dark"))
-              }
-            >
-              Toogle theme
-            </button>
-          </div>;
-        }}
-      </ThemeContext.Consumer>
-    );
-  }
+function About() {
+    let {theme, setTheme} = useContext(ThemeContext)
+  return (
+    <div className={theme}>
+      <h2>This is the about component </h2>
+      <button
+        onClick={() =>
+          setTheme((prev) => (prev === "light" ? "dark" : "light"))
+        }
+      >
+        Toggle Theme
+      </button>
+    </div>
+  );
 }
 
 export default About;

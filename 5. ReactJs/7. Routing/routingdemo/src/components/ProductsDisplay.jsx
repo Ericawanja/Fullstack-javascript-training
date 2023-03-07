@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ProductsContext } from "../context";
 
 
-function ProductsDisplay({ products, category }) {
+function ProductsDisplay({  category }) {
+  let products = useContext(ProductsContext)
   const navigate = useNavigate();
   const [data, setData] = useState(products);
   const handleNavigation = (id) => {

@@ -18,44 +18,29 @@ function App() {
   }, [products]);
   return (
     <div className="App">
-       <Navbar />
-      <Routes>       
+      <Navbar />
+      <Routes>
         <Route path={"/products"} element={<Products products={products} />}>
           <Route
             index
             element={<ProductsDisplay products={products} category={"all"} />}
           />
-          {categories.length > 0 && categories.map(c=>{
-            return <Route
-            path={`${c}`}
-            element={
-              <ProductsDisplay products={products} category={`${c}`}/>
-            }
-          />
-          })}
-          {/* <Route
-            path={"smartPhones"}
-            element={
-              <ProductsDisplay products={products} category={"smartphones"} />
-            }
-          />
-          <Route
-            path={"laptops"}
-            element={
-              <ProductsDisplay products={products} category={"laptops"} />
-            }
-          />
-          <Route
-            path={"groceries"}
-            element={
-              <ProductsDisplay products={products} category={"groceries"} />
-            }
-          />*/}
+          {categories.length > 0 &&
+            categories.map((c) => {
+              return (
+                <Route
+                  path={`${c}`}
+                  element={
+                    <ProductsDisplay category={`${c}`} />
+                  }
+                />
+              );
+            })}
         </Route>
         <Route
           path="/products/:id"
           element={<OneProduct products={products} />}
-        /> 
+        />
       </Routes>
     </div>
   );
