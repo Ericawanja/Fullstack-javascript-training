@@ -1,15 +1,18 @@
-import  {useDispatch, useSelector } from 'react-redux'
-import './App.css';
+import { useDispatch, useSelector } from "react-redux";
+import "./App.css";
 
 function App() {
-  const dispatch = useDispatch()
-  // const data = useSelector(state=>state)
-  // console.log(data)
+  const dispatch = useDispatch();
+  const data = useSelector((state) => {
+  
+    return state;
+  });
+  console.log(data);
 
   return (
     <div className="App">
-     <h1>0</h1>
-     <button onClick={()=>dispatch({type:'increment'})}>+</button>
+      <h1>{data.counter}</h1>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
     </div>
   );
 }

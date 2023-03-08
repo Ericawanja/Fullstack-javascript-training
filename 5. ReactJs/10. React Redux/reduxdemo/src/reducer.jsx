@@ -4,6 +4,8 @@ function counterReducer(state = initialState, action){
         case 'increment':
             console.log(state)
             return  {counter: state.counter + 1}
+        default:  return state   
     }
+
 }
 export default counterReducer

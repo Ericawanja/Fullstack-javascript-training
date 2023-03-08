@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 
 
 const store = createStore(counterReducer)
-console.log(store)
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store ={store}>
