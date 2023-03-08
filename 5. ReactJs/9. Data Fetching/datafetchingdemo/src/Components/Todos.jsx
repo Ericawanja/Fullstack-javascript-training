@@ -1,36 +1,30 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-
-function Todo() {
-  const [todos, setTodos] = useState();
-  const fetchPosts = async () => {
-    let response = await fetch("https://dummyjson.com/todos");
-    if (response.status === 200) {
-      let data = await response.json()
-     
-      return data;
-    }
-    throw new Error("An error occured ");
-  };
-  useEffect( () => {
-    const getTodos = async ()=>{
-      let data = await fetchPosts()
-      setTodos(data.todos)
-    }
+function Todos() {
+  let [todos, setTodos] = useState([]);
+  useEffect(() => {
+    let getTodos = async () => {
+      try {
+        let response = await axios.get("https://dummyjson.com/todos");
+        setTodos(response.data.todos);
+      } catch (error) {
+        console.log("This is the error", error);
+      }
+    };
     getTodos();
-    
-  }, []);
+  });
   return (
-    <div className="App">
+    <div>
       {todos && todos.length > 0 ? (
         todos.map((t) => {
-          return <h1>{t.todo}</h1>
+          return <h3>{t.todo}</h3>;
         })
       ) : (
-        <h1>No data available</h1>
+        <h1>No todos available</h1>
       )}
     </div>
   );
 }
 
-export default Todo;
+export default Todos;

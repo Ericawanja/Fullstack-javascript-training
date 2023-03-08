@@ -1,30 +1,34 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function Posts() {
-  let [posts, setPosts] = useState();
-  useEffect(() => {
-    let getPosts = () => {
-      axios
-        .get("https://dummyjson.com/posts")
-        .then((response) => {
-            console.log(response.data.posts)
-          setPosts(response.data.posts);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getPosts()
-  }, []);
+  let [posts, setPosts] = useState([1,2,3,4,5]);
+  let fetchPosts = async ()=>{
+    let response = await fetch(`https://dummyjson.com/posts`)
+    if(response.status === 200){
+    let data = await  response.json()
+    return data;}
+    else{
+        throw new Error("An error occured")
+    }
+  }
+useEffect(()=>{
+    let getData = async ()=>{
+        let data = await fetchPosts()
+        console.log(data)
+        setPosts(data.posts)
+    }
+    getData()
+}, [])
+ 
   return (
     <div>
-      {posts && posts.length > 0 ? (
+        
+      {posts && (posts.length > 0) ? (
         posts.map((p) => {
-          return <h1>{p.title}</h1>;
+          return <h3 key={p.id}>{p.title}</h3>;
         })
       ) : (
-        <h1>No data available</h1>
+        <h1>No posts available yet</h1>
       )}
     </div>
   );
