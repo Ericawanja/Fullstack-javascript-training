@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
+import { changeStatus } from "./redux/features/todosSlice";
 
 function App() {
+  let dispatch = useDispatch();
   let [show, setShow] = useState(false);
   let { todos } = useSelector((state) => state);
-
+  console.log(todos);
   return (
     <div className="container">
       <div className="header">
@@ -16,9 +18,14 @@ function App() {
         {todos?.length > 0 ? (
           todos.map((todo) => {
             return (
-              <div class="todo" key ={todo.id}>
+              <div class="todo" key={todo.id}>
                 <div class="check">
-                  <input type="checkbox" name="" id="checkBtn" />
+                  <input
+                    type="checkbox"
+                    name=""
+                    id="checkBtn"
+                    onChange={() => dispatch(changeStatus(todo.id))}
+                  />
                 </div>
 
                 <div class="details">
