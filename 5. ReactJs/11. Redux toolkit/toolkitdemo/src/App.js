@@ -1,18 +1,35 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import "./App.css";
-import { changeStatus } from "./redux/features/todosSlice";
+import { addTodo, changeCompletedStatus } from "./redux/features/todoSlice";
 
 function App() {
   let dispatch = useDispatch();
   let [show, setShow] = useState(false);
+  let [inputTitle, setInputTitle] = useState("");
+
   let { todos } = useSelector((state) => state);
-  console.log(todos);
+
+  const handleInputChange = (e) => {
+    setInputTitle(e.target.value);
+  };
+  const handleAddTodo = () => {
+    let id = Math.floor(Math.random() * 100);
+    
+    let newTodo = { id, title: inputTitle, completed: false };
+    dispatch({ type: addTodo, payload: newTodo });
+    setShow(false)
+    setInputTitle("");
+  };
   return (
     <div className="container">
       <div className="header">
         <div className="welcome">Welcome back</div>
-        <div className="createBtn"> + Add</div>
+        <div className="createBtn" onClick={() => setShow(!show)}>
+          {" "}
+          + Add
+        </div>
       </div>
       <div className="wrapper">
         {todos?.length > 0 ? (
@@ -24,12 +41,18 @@ function App() {
                     type="checkbox"
                     name=""
                     id="checkBtn"
-                    onChange={() => dispatch(changeStatus(todo.id))}
+                    checked={todo.completed}
+                    onChange={() =>
+                      dispatch({
+                        type: changeCompletedStatus,
+                        payload: todo.id,
+                      })
+                    }
                   />
                 </div>
 
                 <div class="details">
-                  <div class="title">{todo.text}</div>
+                  <div class="title">{todo.title}</div>
                   <div class="desc">Completed {`${todo.completed}`}</div>
                 </div>
                 <div class="icons">
@@ -54,15 +77,9 @@ function App() {
                 placeholder="Enter the task title"
                 name="title"
                 id="formTitle"
+                value={inputTitle}
+                onChange={handleInputChange}
                 required
-              />
-
-              <label for="task_desc">Task details</label>
-              <input
-                type="text"
-                placeholder="Enter task details"
-                name="taskDesc"
-                id="taskDesc"
               />
 
               <h4 className="enterDetails">Enter all the details</h4>
@@ -70,7 +87,11 @@ function App() {
                 <button type="button" className="cancel">
                   Cancel
                 </button>
-                <button type="button" className="submit">
+                <button
+                  type="button"
+                  className="submit"
+                  onClick={handleAddTodo}
+                >
                   Save
                 </button>
               </div>
