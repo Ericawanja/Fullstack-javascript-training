@@ -1,8 +1,6 @@
 import React, { Suspense, useState } from "react";
 import "./App.css";
-
 import Nav from "./components/Nav";
-
 import { Route, Routes } from "react-router-dom";
 
 
