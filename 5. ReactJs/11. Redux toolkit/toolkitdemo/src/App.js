@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./App.css";
-import { addTodo, changeCompletedStatus, fetchTodos } from "./redux/features/todoSlice";
+import { addTodo, changeCompletedStatus, deleteTodo, fetchTodos } from "./redux/features/todoSlice";
 
 function App() {
   let dispatch = useDispatch();
@@ -59,7 +59,7 @@ function App() {
                   <div class="desc">Completed {`${todo.completed}`}</div>
                 </div>
                 <div class="icons">
-                  <span class="delete">Delete</span>
+                  <span class="delete" onClick={()=>dispatch(deleteTodo(todo.id))}>Delete</span>
                   <span class="edit">Edit</span>
                 </div>
               </div>

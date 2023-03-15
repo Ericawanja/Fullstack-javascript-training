@@ -33,12 +33,13 @@ export const fetchTodos = createAsyncThunk(
   }
 );
 
-const deleteTodo = createAsyncThunk("todo/delete", async (id, thunkApi) => {
+export const deleteTodo = createAsyncThunk("todo/delete", async (id, thunkApi) => {
   console.log(id)
   try {
-    let response = await axios.get(
+    let response = await axios.delete(
       `https://training-projects-be1ba-default-rtdb.firebaseio.com/questions/${id}.json`
     );
+    thunkApi.dispatch(fetchTodos())
     return;
   } catch (error) {
     return thunkApi.rejectWithValue(error);
@@ -81,6 +82,22 @@ const todosSlice = createSlice({
       state.todos = payload;
     });
     builder.addCase(fetchTodos.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+      state.todos = [];
+    });
+    builder.addCase(deleteTodo.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+      state.todos = [];
+    });
+    builder.addCase(deleteTodo.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.loading = false;
+      state.error = "";
+     
+    });
+    builder.addCase(deleteTodo.rejected, (state, { payload }) => {
       state.loading = false;
       state.error = payload;
       state.todos = [];
