@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function Home() {
+function Home({ initial }) {
+  const [value, setValue] = useState(initial);
   const handleClick = () => {
     console.log("handling click");
   };
+  useEffect(()=>{
+    console.log('home rerendering')
+  })
   return (
     <div>
       Home
@@ -13,4 +17,5 @@ function Home() {
   );
 }
 
-export default Home;
+export default React.memo(Home);
+// export default Home

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Counter from "./components/Counter";
 import Data from "./components/Data";
@@ -11,16 +11,22 @@ function App() {
   useEffect(()=>{
     console.log("the array changed")
   }, [array])
+
+  const getData = useCallback(()=>{
+    return 10
+  }, [])
+  const array2 = [2,3,4]
   return (
     <div className="App">
-      {/* <button onClick={() => setState((s) => +s + 1)}>{state}</button>
+      <button onClick={() => setState((s) => +s + 1)}>{state}</button>
       <h1>{title}</h1>
       <button
         onClick={() => setTitle((t) => (t === "title" ? "New Title" : "title"))}
-      > change the title</button> */}
-      {/* <Home />
+      > change the title</button>
+      {/* 
       <Counter /> */}
       <Data/>
+      <Home  initial= {getData} />
     </div>
   );
 }

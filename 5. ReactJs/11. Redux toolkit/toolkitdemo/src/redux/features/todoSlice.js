@@ -1,6 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
+  loading: false,
+  error: "",
   todos: [
     { id: 1, title: "Study", completed: false },
     { id: 2, title: "Go through the code", completed: true },
@@ -8,6 +11,39 @@ const initialState = {
     { id: 4, title: "Read the book", completed: true },
   ],
 };
+export const fetchTodos = createAsyncThunk(
+  "todos/fetchTodos",
+  async (_, thunkApi) => {
+    try {
+      let response = await axios.get(
+        "https://training-projects-be1ba-default-rtdb.firebaseio.com/questions.json"
+      );
+      console.log(response.data);
+
+      const keys = Object.keys(response.data);
+      const data = [];
+      for (let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        data.push({ ...response.data[key], id: key });
+      }
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+const deleteTodo = createAsyncThunk("todo/delete", async (id, thunkApi) => {
+  console.log(id)
+  try {
+    let response = await axios.get(
+      `https://training-projects-be1ba-default-rtdb.firebaseio.com/questions/${id}.json`
+    );
+    return;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
+});
 
 const todosSlice = createSlice({
   name: "todos slice",
@@ -28,9 +64,27 @@ const todosSlice = createSlice({
     },
     addTodo: (state, { payload }) => {
       console.log(payload);
-       state.todos.push(payload)
+      state.todos.push(payload);
       return state;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTodos.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+      state.todos = [];
+    });
+    builder.addCase(fetchTodos.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.loading = false;
+      state.error = "";
+      state.todos = payload;
+    });
+    builder.addCase(fetchTodos.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+      state.todos = [];
+    });
   },
 });
 

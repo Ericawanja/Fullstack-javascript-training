@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./App.css";
-import { addTodo, changeCompletedStatus } from "./redux/features/todoSlice";
+import { addTodo, changeCompletedStatus, fetchTodos } from "./redux/features/todoSlice";
 
 function App() {
   let dispatch = useDispatch();
@@ -16,12 +16,15 @@ function App() {
   };
   const handleAddTodo = () => {
     let id = Math.floor(Math.random() * 100);
-    
+
     let newTodo = { id, title: inputTitle, completed: false };
     dispatch({ type: addTodo, payload: newTodo });
-    setShow(false)
+    setShow(false);
     setInputTitle("");
   };
+  useEffect(() => {
+    dispatch(fetchTodos())
+  }, []);
   return (
     <div className="container">
       <div className="header">
