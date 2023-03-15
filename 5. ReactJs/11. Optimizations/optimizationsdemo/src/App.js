@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Counter from "./components/Counter";
+import Data from "./components/Data";
 import Home from "./components/Home";
 
 function App() {
@@ -12,13 +13,14 @@ function App() {
   }, [array])
   return (
     <div className="App">
-      <button onClick={() => setState((s) => +s + 1)}>{state}</button>
+      {/* <button onClick={() => setState((s) => +s + 1)}>{state}</button>
       <h1>{title}</h1>
       <button
         onClick={() => setTitle((t) => (t === "title" ? "New Title" : "title"))}
-      > change the title</button>
-      <Home />
-      <Counter />
+      > change the title</button> */}
+      {/* <Home />
+      <Counter /> */}
+      <Data/>
     </div>
   );
 }
