@@ -4,48 +4,83 @@ import axios from "axios";
 const initialState = {
   loading: false,
   error: "",
-  todos: [
-    { id: 1, title: "Study", completed: false },
-    { id: 2, title: "Go through the code", completed: true },
-    { id: 3, title: "Debug the code", completed: false },
-    { id: 4, title: "Read the book", completed: true },
-  ],
+  todos: [],
 };
 export const fetchTodos = createAsyncThunk(
-  "todos/fetchTodos",
+  "todos/fetch",
   async (_, thunkApi) => {
     try {
       let response = await axios.get(
-        "https://training-projects-be1ba-default-rtdb.firebaseio.com/questions.json"
+        `https://todos-12a89-default-rtdb.firebaseio.com/todos.json`
       );
       console.log(response.data);
-
-      const keys = Object.keys(response.data);
-      const data = [];
+      let data = [];
+      let keys = Object.keys(response.data);
+      console.log(keys);
       for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
         data.push({ ...response.data[key], id: key });
       }
+      console.log(data);
       return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error);
+      thunkApi.rejectWithValue(error);
     }
   }
 );
 
-export const deleteTodo = createAsyncThunk("todo/delete", async (id, thunkApi) => {
-  console.log(id)
-  try {
-    let response = await axios.delete(
-      `https://training-projects-be1ba-default-rtdb.firebaseio.com/questions/${id}.json`
-    );
-    thunkApi.dispatch(fetchTodos())
-    return;
-  } catch (error) {
-    return thunkApi.rejectWithValue(error);
+export const deleteTodo = createAsyncThunk(
+  "todos/delete",
+  async (id, thunkApi) => {
+    try {
+      console.log(`deleting an item ${id}`);
+      const deletedItem = await axios.delete(
+        `https://todos-12a89-default-rtdb.firebaseio.com/todos/${id}.json`
+      );
+      thunkApi.dispatch(fetchTodos());
+      return;
+    } catch (error) {
+      thunkApi.rejectWithValue(error);
+    }
   }
-});
+);
+export const createTodo = createAsyncThunk(
+  "todos/adding",
+  async (payload, thunkApi) => {
+    try {
+      console.log(payload);
+      const newTodo = await axios.post(
+        `https://todos-12a89-default-rtdb.firebaseio.com/todos.json`,
+        {
+          ...payload,
+        }
+      );
 
+      thunkApi.dispatch(fetchTodos());
+    } catch (error) {
+      thunkApi.rejectWithValue(error);
+    }
+  }
+);
+
+export const completeTodo = createAsyncThunk(
+  "todos/completed",
+  async (payload, thunkApi) => {
+    let id = payload.id
+    let completed = payload.completed ? false :true
+  
+    try {
+      let response = await axios.put(
+        `https://todos-12a89-default-rtdb.firebaseio.com/todos/${id}.json`, {
+          title: payload.title,
+          completed
+        }
+      );
+      thunkApi.dispatch(fetchTodos())
+      return;
+    } catch (error) {}
+  }
+);
 const todosSlice = createSlice({
   name: "todos slice",
   initialState,
@@ -71,36 +106,57 @@ const todosSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchTodos.pending, (state, action) => {
+      console.log("loading...");
       state.loading = true;
       state.error = "";
       state.todos = [];
     });
-    builder.addCase(fetchTodos.fulfilled, (state, { payload }) => {
-      console.log(payload);
+    builder.addCase(fetchTodos.fulfilled, (state, action) => {
       state.loading = false;
       state.error = "";
-      state.todos = payload;
+      state.todos = action.payload;
     });
-    builder.addCase(fetchTodos.rejected, (state, { payload }) => {
+    builder.addCase(fetchTodos.rejected, (state, action) => {
+      console.log("rejected...");
       state.loading = false;
-      state.error = payload;
+      state.error = action.payload;
       state.todos = [];
     });
     builder.addCase(deleteTodo.pending, (state, action) => {
       state.loading = true;
       state.error = "";
-      state.todos = [];
     });
-    builder.addCase(deleteTodo.fulfilled, (state, { payload }) => {
-      console.log(payload);
+    builder.addCase(deleteTodo.fulfilled, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(deleteTodo.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(createTodo.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(createTodo.fulfilled, (state, action) => {
       state.loading = false;
       state.error = "";
-     
     });
-    builder.addCase(deleteTodo.rejected, (state, { payload }) => {
+    builder.addCase(createTodo.rejected, (state, action) => {
       state.loading = false;
-      state.error = payload;
-      state.todos = [];
+      state.error = action.payload;
+    });
+    builder.addCase(completeTodo.pending, (state, action) => {
+      state.loading = true;
+      state.error = "";
+    });
+    builder.addCase(completeTodo.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = "";
+    });
+    builder.addCase(completeTodo.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     });
   },
 });

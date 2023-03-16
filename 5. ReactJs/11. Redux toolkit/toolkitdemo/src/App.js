@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./App.css";
-import { addTodo, changeCompletedStatus, deleteTodo, fetchTodos } from "./redux/features/todoSlice";
+import {
+  addTodo,
+  changeCompletedStatus,
+  completeTodo,
+  createTodo,
+  deleteTodo,
+  fetchTodos,
+} from "./redux/features/todoSlice";
 
 function App() {
   let dispatch = useDispatch();
@@ -15,15 +22,16 @@ function App() {
     setInputTitle(e.target.value);
   };
   const handleAddTodo = () => {
-    let id = Math.floor(Math.random() * 100);
+   
 
-    let newTodo = { id, title: inputTitle, completed: false };
-    dispatch({ type: addTodo, payload: newTodo });
+    let newTodo = {  title: inputTitle, completed: false };
+    // dispatch({ type: addTodo, payload: newTodo });
+    dispatch(createTodo(newTodo))
     setShow(false);
     setInputTitle("");
   };
   useEffect(() => {
-    dispatch(fetchTodos())
+    dispatch(fetchTodos());
   }, []);
   return (
     <div className="container">
@@ -45,12 +53,13 @@ function App() {
                     name=""
                     id="checkBtn"
                     checked={todo.completed}
-                    onChange={() =>
-                      dispatch({
-                        type: changeCompletedStatus,
-                        payload: todo.id,
-                      })
-                    }
+                    // onChange={() =>
+                    //   dispatch({
+                    //     type: changeCompletedStatus,
+                    //     payload: todo.id,
+                    //   })
+                    // }
+                    onChange = {()=>dispatch(completeTodo(todo))}
                   />
                 </div>
 
@@ -59,7 +68,12 @@ function App() {
                   <div class="desc">Completed {`${todo.completed}`}</div>
                 </div>
                 <div class="icons">
-                  <span class="delete" onClick={()=>dispatch(deleteTodo(todo.id))}>Delete</span>
+                  <span
+                    class="delete"
+                    onClick={() => dispatch(deleteTodo(todo.id))}
+                  >
+                    Delete
+                  </span>
                   <span class="edit">Edit</span>
                 </div>
               </div>
