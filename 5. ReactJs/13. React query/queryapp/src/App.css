@@ -1,12 +1,3 @@
-nav{
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-nav Link{
-  cursor: pointer;
-}
-
 .App {
   text-align: center;
 }

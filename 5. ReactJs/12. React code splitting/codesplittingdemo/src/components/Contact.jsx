@@ -6,4 +6,4 @@ function Contact() {
   )
 }
 
-export const ContactComponent = Contact
+export const ContactFeature = Contact
